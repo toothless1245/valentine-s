@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Should You Date Divyesh?</title>
+  <meta property="og:title" content="care to partake in some ridiculous tomfoolery?">
+  <meta property="og:description" content="Discover if you're compatible with this HTTYD-loving, space-obsessed romantic!">
+  <meta property="og:image" content="https://example.com/your-share-image.jpg">
+  
+  <!-- Preload images -->
+  <link rel="preload" href="your-photo-url.jpg" as="image">
+  <link rel="preload" href="https://i.imgur.com/relatable-meme.jpg" as="image">
+  
+  <!-- Sound effects -->
+  <audio id="clickSound" src="https://www.myinstants.com/media/sounds/button-click.mp3"></audio>
+  <audio id="yesSound" src="https://www.myinstants.com/media/sounds/woohoo.mp3"></audio>
+  <audio id="maybeSound" src="https://www.myinstants.com/media/sounds/cartoon-slide.mp3"></audio>
+  <audio id="noSound" src="https://www.myinstants.com/media/sounds/fail.mp3"></audio>
+  
+  <!-- Confetti library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+  <style>
+    :root {
+      --primary: #FF4081;
+      --success: #4CAF50;
+      --warning: #FFC107;
+      --danger: #F44336;
+    }
+
+    body {
+      font-family: courier;
+      background: #F08080;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      animation: bg-pulse 5s infinite alternate;
+      font-size: 18px;
+    }
+
+    @keyframes bg-pulse {
+      0% { background: #F08080; }
+      100% { background: #F08080; }
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px #000;
+    }
+
+    /* Updated section styling to center content */
+    section {
+      display: none;
+      width: 100%;
+    }
+    section.active {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+      gap: 10px;
+      max-width: 800px;
+      margin: 10px;
+      flex-wrap: wrap;
+    }
+    
+    .gif-container {
+      display: flex;
+      justify-content: center;
+      flex: 1;
+      margin: 10px;
+    }
+    
+    .gif-container img {
+      max-width: 200px;
+    }
+    
+    .btn {
+      display: flex;
+      gap: 20px;
+      margin-top: 10px;
+    }
+    
+    .btn a, .btn button {
+      text-decoration: none;
+      color: #111;
+      background: #fff;
+      padding: 10px 25px;
+      border-radius: 8px;
+      box-shadow: 0.5rem 1rem 3rem rgba(0, 0, 0, 0.3);
+      font-family: Lucida Handwriting;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .btn a:hover, .btn button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0.5rem 1rem 3rem rgba(0, 0, 0, 0.6);
+    }
+  </style>
+</head>
+<body>
+  <!-- Home Section (from main.html) -->
+  <section id="home" class="active">
+    <div class="container">
+      <div class="gif-container">
+        <img src="https://www.dropbox.com/scl/fi/b5nrk86lz65qpkyehsknx/will-you.jpg?rlkey=4jkl9h582yu67fx4n5rgwqhq3&st=5k3aevu5&dl=0&raw=1" alt="cutsie car" />
+      </div>
+      <h1>So... maybe wanna hangout this valentine's?</h1>
+      <p>You can totally say no</p>
+      <div class="btn">
+        <button onclick="showSection('yes')">Yes</button>
+        <button onclick="showSection('no1')">No</button>
+      </div>
+    </div>
+    <audio id="homeAudio" loop>
+      <source src="https://www.dropbox.com/scl/fi/7eeo2u5pcsmnty4w7aqvf/home-I-Am-Dog-Gone-Crazy.mp3?rlkey=2bwgy6mwdbklqsew4yx41ftdy&st=e8n9ed8q&dl=0&raw=1" type="audio/mpeg">
+    </audio>
+  </section>
+  
+  <!-- Yes Section (from yes_1.html) -->
+  <section id="yes">
+    <div class="container">
+      <div class="gif-container">
+        <video id="yesVideo" loop width="300" height="300">
+          <source src="https://www.dropbox.com/scl/fi/llch7ys8samdcwchmls7b/toothsie-dance.mp4?rlkey=9mtosrtk7tb6fcc99ko0acldq&st=o8mwh5n5&dl=0&raw=1" type="video/mp4">
+        </video>
+      </div>
+      <h1>Someone's in LOVE. Well, that's just embarrassing.</h1>
+      <p>Yeah yeah, I lesbian you too</p>
+      <p>And yes, that is us</p>
+      <div class="btn">
+        <button onclick="showSection('home')">Back</button>
+      </div>
+    </div>
+  </section>
+  
+  <!-- No1 Section (from no_1.html) -->
+  <section id="no1">
+    <div class="container">
+      <div class="gif-container">
+        <img src="https://www.dropbox.com/scl/fi/e9mdohuz02yssgnzbhxxh/N1.jpg?rlkey=rb3czvlr1ympo1gy1cpl40z2i&st=4nu01jtr&dl=0&raw=1" alt="Narnia" />
+      </div>
+      <h1>Take your time, pumpkin 🎃</h1>
+      <p>All this effort just for a NO, huh. Maybe teri mumma maan jaaye?</p>
+      <div class="btn">
+        <button onclick="showSection('yes')">Yes</button>
+        <button onclick="showSection('no2')">No</button>
+      </div>
+    </div>
+    <audio id="no1Audio" loop>
+      <source src="https://www.dropbox.com/scl/fi/4d0vq20tg1gf5jngah67f/No_1-So-you-have-chosen-death.mp3?rlkey=ggulf4nwsj2hn0r6l555syksq&st=5f8pzdv2&dl=0&raw=1" type="audio/mpeg">
+    </audio>
+  </section>
+  
+  <!-- No2 Section (from no_2.html) -->
+  <section id="no2">
+    <div class="container">
+      <div class="gif-container">
+        <img src="https://www.dropbox.com/scl/fi/1gdierjss50h0u9728s8t/N2.jpg?rlkey=kfp4eub90zk6fyc20bhbnvdk5&st=gu92nurk&dl=0&raw=1" alt="hoes mad" />
+      </div>
+      <h1>I said, TAKE YOUR TIME 😡</h1>
+      <p>I'm really not gonna let all this effort go to waste</p>
+      <div class="btn">
+        <button onclick="showSection('yes')">Yes</button>
+        <button onclick="showSection('no3')">No</button>
+      </div>
+    </div>
+    <audio id="no2Audio" loop>
+      <source src="https://www.dropbox.com/scl/fi/v7u3cmewl49fptw16rcux/no_2-Hoes-mad-meme.mp3?rlkey=xjxfjxnhtahm7213l3worq9s8&st=36jerxkl&dl=0&raw=1" type="audio/mpeg">
+    </audio>
+  </section>
+  
+  <!-- No3 Section (from no_3.html) -->
+  <section id="no3">
+    <div class="container">
+      <div class="gif-container">
+        <img src="https://www.dropbox.com/scl/fi/1to9cix8vf8nft4a5ethu/N3.jpg?rlkey=oaekhtjok25kq66vv07xomaox&st=ygz0jopt&dl=0&raw=1" alt="watch your tone" />
+      </div>
+      <h1>Pretty please? 😫😩</h1>
+      <p>Ab to magic word bhi use lar liya...</p>
+      <div class="btn">
+        <button onclick="showSection('yes')">Yes</button>
+        <button id="move-random" onclick="showSection('home')">No</button>
+      </div>
+    </div>
+    <audio id="no3Audio" loop>
+      <source src="https://www.dropbox.com/scl/fi/n2kedipvtnl7uhuoqmn36/no_3-A-Man-Without-Love.mp3?rlkey=66mla0xwcky6ae23lj8xlnnij&st=su254lj3&dl=0&raw=1" type="audio/mpeg">
+    </audio>
+  </section>
+  
+  <!-- Navigation Script -->
+  <script>
+    function showSection(sectionId) {
+      // Pause media in all sections and remove active class
+      const sections = document.querySelectorAll("section");
+      sections.forEach(sec => {
+        sec.classList.remove("active");
+        sec.querySelectorAll("audio, video").forEach(media => {
+          media.pause();
+          // Reset video to beginning if needed
+          if(media.tagName.toLowerCase() === 'video') {
+            media.currentTime = 0;
+          }
+        });
+      });
+      // Activate the new section
+      const activeSection = document.getElementById(sectionId);
+      activeSection.classList.add("active");
+      // Play media in the new active section
+      activeSection.querySelectorAll("audio, video").forEach(media => {
+        media.play();
+      });
+    }
+    
+    // Functionality for randomizing the "No" button in No3 section
+    function moveRandomEl(elm) {
+      elm.style.position = "absolute";
+      elm.style.top = Math.floor(Math.random() * 80 + 10) + "%";
+      elm.style.left = Math.floor(Math.random() * 80 + 10) + "%";
+    }
+    
+    window.addEventListener("load", function() {
+      const moveRandom = document.querySelector("#move-random");
+      if(moveRandom) {
+        moveRandom.addEventListener("mouseenter", function(e) {
+          moveRandomEl(e.target);
+        });
+      }
+      // On initial load, ensure only the active section's media plays
+      document.querySelectorAll("section.active audio, section.active video").forEach(media => {
+        media.play();
+      });
+    });
+  </script>
+</body>
+</html>
