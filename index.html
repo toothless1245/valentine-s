@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Should You Date Divyesh?</title>
+  <title>Care to partake in some ridiculous tomfoolery this valentine's?</title>
   <meta property="og:title" content="care to partake in some ridiculous tomfoolery?">
   <meta property="og:description" content="Discover if you're compatible with this HTTYD-loving, space-obsessed romantic!">
   <meta property="og:image" content="https://example.com/your-share-image.jpg">
@@ -120,8 +120,8 @@
       <h1>So... maybe wanna hangout this valentine's?</h1>
       <p>You can totally say no</p>
       <div class="btn">
-        <button onclick="showSection('yes')">Yes</button>
-        <button onclick="showSection('no1')">No</button>
+        <button onclick="showSection('yes')"><b>Yes</b></button>
+        <button onclick="showSection('no1')"><b>No</b></button>
       </div>
     </div>
     <audio id="homeAudio" loop>
@@ -141,7 +141,7 @@
       <p>Yeah yeah, I lesbian you too</p>
       <p>And yes, that is us</p>
       <div class="btn">
-        <button onclick="showSection('home')">Back</button>
+        <button onclick="showSection('home')"><b>Back</b></button>
       </div>
     </div>
   </section>
@@ -155,8 +155,8 @@
       <h1>Take your time, pumpkin 🎃</h1>
       <p>All this effort just for a NO, huh. Maybe teri mumma maan jaaye?</p>
       <div class="btn">
-        <button onclick="showSection('yes')">Yes</button>
-        <button onclick="showSection('no2')">No</button>
+        <button onclick="showSection('yes')"><b>Yes</b></button>
+        <button onclick="showSection('no2')"><b>No</b></button>
       </div>
     </div>
     <audio id="no1Audio" loop>
@@ -173,8 +173,8 @@
       <h1>I said, TAKE YOUR TIME 😡</h1>
       <p>I'm really not gonna let all this effort go to waste</p>
       <div class="btn">
-        <button onclick="showSection('yes')">Yes</button>
-        <button onclick="showSection('no3')">No</button>
+        <button onclick="showSection('yes')"><b>Yes</b></button>
+        <button onclick="showSection('no3')"><b>No</b></button>
       </div>
     </div>
     <audio id="no2Audio" loop>
@@ -191,8 +191,8 @@
       <h1>Pretty please? 😫😩</h1>
       <p>Ab to magic word bhi use lar liya...</p>
       <div class="btn">
-        <button onclick="showSection('yes')">Yes</button>
-        <button id="move-random" onclick="showSection('home')">No</button>
+        <button onclick="showSection('yes')"><b>Yes</b></button>
+        <button id="move-random" onclick="showSection('home')"><b>No</b></button>
       </div>
     </div>
     <audio id="no3Audio" loop>
@@ -209,7 +209,6 @@
         sec.classList.remove("active");
         sec.querySelectorAll("audio, video").forEach(media => {
           media.pause();
-          // Reset video to beginning if needed
           if(media.tagName.toLowerCase() === 'video') {
             media.currentTime = 0;
           }
@@ -220,7 +219,9 @@
       activeSection.classList.add("active");
       // Play media in the new active section
       activeSection.querySelectorAll("audio, video").forEach(media => {
-        media.play();
+        media.play().catch(e => {
+          console.log('Autoplay error:', e);
+        });
       });
     }
     
@@ -238,10 +239,18 @@
           moveRandomEl(e.target);
         });
       }
-      // On initial load, ensure only the active section's media plays
-      document.querySelectorAll("section.active audio, section.active video").forEach(media => {
-        media.play();
-      });
+      // Attempt to play home section audio on load
+      const homeAudio = document.getElementById("homeAudio");
+      if (homeAudio) {
+        homeAudio.play().catch(e => {
+          console.log("Autoplay failed for homeAudio:", e);
+          // If autoplay fails, try playing on the next click (one-time event listener)
+          document.addEventListener("click", function playHomeAudioOnce() {
+            homeAudio.play().catch(err => console.log("Playback failed on click:", err));
+            document.removeEventListener("click", playHomeAudioOnce);
+          });
+        });
+      }
     });
   </script>
 </body>
