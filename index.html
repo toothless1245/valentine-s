@@ -3,21 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Care to partake in some ridiculous tomfoolery this valentine's?</title>
-  <meta property="og:title" content="care to partake in some ridiculous tomfoolery?">
-  <meta property="og:description" content="Discover if you're compatible with this HTTYD-loving, space-obsessed romantic!">
+  <title>Care to partake in some ridiculous tomfoolery this Valentine's?</title>
+  <meta property="og:title" content="Care to partake in some ridiculous tomfoolery?">
+  <meta property="og:description" content="A date with this HTTYD-loving, space-obsessed romantic!">
   <meta property="og:image" content="https://example.com/your-share-image.jpg">
-  
+
   <!-- Preload images -->
   <link rel="preload" href="your-photo-url.jpg" as="image">
   <link rel="preload" href="https://i.imgur.com/relatable-meme.jpg" as="image">
-  
-  <!-- Sound effects -->
-  <audio id="clickSound" src="https://www.myinstants.com/media/sounds/button-click.mp3"></audio>
-  <audio id="yesSound" src="https://www.myinstants.com/media/sounds/woohoo.mp3"></audio>
-  <audio id="maybeSound" src="https://www.myinstants.com/media/sounds/cartoon-slide.mp3"></audio>
-  <audio id="noSound" src="https://www.myinstants.com/media/sounds/fail.mp3"></audio>
-  
+
   <!-- Confetti library -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
@@ -30,94 +24,150 @@
     }
 
     body {
-      font-family: courier;
+      font-family: 'Courier New', monospace;
       background: #F08080;
       color: #fff;
-      text-align: center;
-      padding: 20px;
-      animation: bg-pulse 5s infinite alternate;
-      font-size: 18px;
+      margin: 0;
+      padding: 0;
     }
 
-    @keyframes bg-pulse {
-      0% { background: #F08080; }
-      100% { background: #F08080; }
-    }
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      text-shadow: 2px 2px #000;
-    }
-
-    /* Updated section styling to center content */
+    /* Shared Styles */
     section {
       display: none;
       width: 100%;
+      min-height: 100vh;
+      overflow: hidden;
     }
+
     section.active {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.8rem;
+      text-shadow: 2px 2px #000;
+    }
+
+    p {
+      font-size: 1.2rem;
     }
 
     .container {
       display: flex;
       flex-direction: column;
-      text-align: center;
       align-items: center;
-      gap: 10px;
+      gap: 05px;
       max-width: 800px;
-      margin: 10px;
-      flex-wrap: wrap;
     }
-    
+
     .gif-container {
       display: flex;
       justify-content: center;
-      flex: 1;
-      margin: 10px;
+      margin: 40px;
     }
-    
-    .gif-container img {
-      max-width: 200px;
+
+    .gif-container img,
+    .gif-container video {
+      max-width: 100%;
+      max-height: 200px;
+      border-radius: 10px;
     }
-    
+
     .btn {
       display: flex;
       gap: 20px;
-      margin-top: 10px;
+      margin-top: 15px;
+      flex-wrap: wrap;
     }
-    
-    .btn a, .btn button {
+
+    .btn a,
+    .btn button {
       text-decoration: none;
       color: #111;
       background: #fff;
-      padding: 10px 25px;
+      padding: 10px 20px;
       border-radius: 8px;
       box-shadow: 0.5rem 1rem 3rem rgba(0, 0, 0, 0.3);
-      font-family: Lucida Handwriting;
+      font-family: 'Lucida Handwriting', cursive;
       border: none;
       cursor: pointer;
+      font-size: 1rem;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    
-    .btn a:hover, .btn button:hover {
+
+    .btn a:hover,
+    .btn button:hover {
       transform: translateY(-5px);
       box-shadow: 0.5rem 1rem 3rem rgba(0, 0, 0, 0.6);
+    }
+
+    /* Intro Section Styling */
+    #intro {
+      background: #F08080;
+      color: #fff;
+      text-align: center;
+      padding: 40px;
+      animation: bg-pulse 5s infinite alternate;
+    }
+
+    @keyframes bg-pulse {
+      0% { background: #F08080; }
+      100% { background: #FA8072; }
+    }
+
+    #intro .container {
+      gap: 15px;
+    }
+
+    #intro h1 {
+      font-size: 2rem;
+    }
+
+    #intro p {
+      font-size: 1.2rem;
+    }
+
+    #startButton {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    /* Additional Styles for Moving 'No' Button in No3 Section */
+    #move-random {
+      position: relative;
     }
   </style>
 </head>
 <body>
-  <!-- Home Section (from main.html) -->
-  <section id="home" class="active">
+  <!-- Intro Section -->
+  <section id="intro" class="active">
+    <div class="container">
+      <h1>Welcome to a Valentine's day shenanigan!</h1>
+      <p>Care to partake in some ridiculous tomfoolery?</p>
+      <div class="btn">
+        <button id="startButton"><b>Shall we?</b></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Home Section -->
+  <section id="home">
     <div class="container">
       <div class="gif-container">
         <img src="https://www.dropbox.com/scl/fi/b5nrk86lz65qpkyehsknx/will-you.jpg?rlkey=4jkl9h582yu67fx4n5rgwqhq3&st=5k3aevu5&dl=0&raw=1" alt="cutsie car" />
       </div>
-      <h1>So... maybe wanna hangout this valentine's?</h1>
+      <h1>So... maybe wanna hang out this Valentine's?</h1>
       <p>You can totally say no</p>
       <div class="btn">
         <button onclick="showSection('yes')"><b>Yes</b></button>
@@ -128,8 +178,8 @@
       <source src="https://www.dropbox.com/scl/fi/7eeo2u5pcsmnty4w7aqvf/home-I-Am-Dog-Gone-Crazy.mp3?rlkey=2bwgy6mwdbklqsew4yx41ftdy&st=e8n9ed8q&dl=0&raw=1" type="audio/mpeg">
     </audio>
   </section>
-  
-  <!-- Yes Section (from yes_1.html) -->
+
+  <!-- Yes Section -->
   <section id="yes">
     <div class="container">
       <div class="gif-container">
@@ -141,12 +191,13 @@
       <p>Yeah yeah, I lesbian you too</p>
       <p>And yes, that is us</p>
       <div class="btn">
-        <button onclick="showSection('home')"><b>Back</b></button>
+        <!-- The coupon button now calls redeemCoupon() -->
+        <button id="couponButton" onclick="redeemCoupon()"><b>Quick, redeem a free KISS ME coupon!</b></button>
       </div>
     </div>
   </section>
-  
-  <!-- No1 Section (from no_1.html) -->
+
+  <!-- No1 Section -->
   <section id="no1">
     <div class="container">
       <div class="gif-container">
@@ -163,8 +214,8 @@
       <source src="https://www.dropbox.com/scl/fi/4d0vq20tg1gf5jngah67f/No_1-So-you-have-chosen-death.mp3?rlkey=ggulf4nwsj2hn0r6l555syksq&st=5f8pzdv2&dl=0&raw=1" type="audio/mpeg">
     </audio>
   </section>
-  
-  <!-- No2 Section (from no_2.html) -->
+
+  <!-- No2 Section -->
   <section id="no2">
     <div class="container">
       <div class="gif-container">
@@ -181,76 +232,99 @@
       <source src="https://www.dropbox.com/scl/fi/v7u3cmewl49fptw16rcux/no_2-Hoes-mad-meme.mp3?rlkey=xjxfjxnhtahm7213l3worq9s8&st=36jerxkl&dl=0&raw=1" type="audio/mpeg">
     </audio>
   </section>
-  
-  <!-- No3 Section (from no_3.html) -->
+
+  <!-- No3 Section -->
   <section id="no3">
     <div class="container">
       <div class="gif-container">
         <img src="https://www.dropbox.com/scl/fi/1to9cix8vf8nft4a5ethu/N3.jpg?rlkey=oaekhtjok25kq66vv07xomaox&st=ygz0jopt&dl=0&raw=1" alt="watch your tone" />
       </div>
       <h1>Pretty please? 😫😩</h1>
-      <p>Ab to magic word bhi use lar liya...</p>
+      <p>Ab to magic word bhi use kar liya...</p>
       <div class="btn">
         <button onclick="showSection('yes')"><b>Yes</b></button>
-        <button id="move-random" onclick="showSection('home')"><b>No</b></button>
+        <!-- The inline onclick is removed from the No button -->
+        <button id="move-random"><b>No</b></button>
       </div>
     </div>
     <audio id="no3Audio" loop>
       <source src="https://www.dropbox.com/scl/fi/n2kedipvtnl7uhuoqmn36/no_3-A-Man-Without-Love.mp3?rlkey=66mla0xwcky6ae23lj8xlnnij&st=su254lj3&dl=0&raw=1" type="audio/mpeg">
     </audio>
   </section>
-  
-  <!-- Navigation Script -->
+
+  <!-- JavaScript -->
   <script>
+    // Function to show a specific section
     function showSection(sectionId) {
       // Pause media in all sections and remove active class
-      const sections = document.querySelectorAll("section");
+      const sections = document.querySelectorAll('section');
       sections.forEach(sec => {
-        sec.classList.remove("active");
-        sec.querySelectorAll("audio, video").forEach(media => {
+        sec.classList.remove('active');
+        // Pause all media in the section
+        sec.querySelectorAll('audio, video').forEach(media => {
           media.pause();
-          if(media.tagName.toLowerCase() === 'video') {
-            media.currentTime = 0;
-          }
+          media.currentTime = 0;
         });
       });
-      // Activate the new section
+
+      // Show the selected section
       const activeSection = document.getElementById(sectionId);
-      activeSection.classList.add("active");
-      // Play media in the new active section
-      activeSection.querySelectorAll("audio, video").forEach(media => {
+      activeSection.classList.add('active');
+
+      // Play media in the active section
+      activeSection.querySelectorAll('audio, video').forEach(media => {
         media.play().catch(e => {
           console.log('Autoplay error:', e);
         });
       });
     }
-    
+
     // Functionality for randomizing the "No" button in No3 section
     function moveRandomEl(elm) {
       elm.style.position = "absolute";
       elm.style.top = Math.floor(Math.random() * 80 + 10) + "%";
       elm.style.left = Math.floor(Math.random() * 80 + 10) + "%";
     }
-    
-    window.addEventListener("load", function() {
-      const moveRandom = document.querySelector("#move-random");
-      if(moveRandom) {
-        moveRandom.addEventListener("mouseenter", function(e) {
-          moveRandomEl(e.target);
-        });
-      }
-      // Attempt to play home section audio on load
-      const homeAudio = document.getElementById("homeAudio");
-      if (homeAudio) {
-        homeAudio.play().catch(e => {
-          console.log("Autoplay failed for homeAudio:", e);
-          // If autoplay fails, try playing on the next click (one-time event listener)
-          document.addEventListener("click", function playHomeAudioOnce() {
-            homeAudio.play().catch(err => console.log("Playback failed on click:", err));
-            document.removeEventListener("click", playHomeAudioOnce);
+
+    // Function to redeem coupon and trigger confetti animation
+    function redeemCoupon() {
+      // Trigger confetti animation
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+      // Transition to the 'intro' section after a brief delay to showcase confetti
+      setTimeout(function() {
+        showSection('intro');
+      }, 500);
+    }
+
+    // Event listener for the Start button
+    document.getElementById('startButton').addEventListener('click', function() {
+      // Transition to the 'home' section
+      showSection('home');
+    });
+
+    // Attach behavior to the "No" button in the No3 section
+    document.addEventListener("DOMContentLoaded", function() {
+      const noButton = document.getElementById("move-random");
+      let mouseoverAttached = false; // flag to ensure we attach the mouseover listener only once
+
+      // On first click, move the button and attach the mouseover and touch event listeners
+      noButton.addEventListener("click", function() {
+        moveRandomEl(noButton);
+        if (!mouseoverAttached) {
+          mouseoverAttached = true;
+          noButton.addEventListener("mouseover", function() {
+            moveRandomEl(noButton);
           });
-        });
-      }
+          // For mobile touch effect
+          noButton.addEventListener("touchstart", function() {
+            moveRandomEl(noButton);
+          });
+        }
+      });
     });
   </script>
 </body>
